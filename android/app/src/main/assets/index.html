@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>دليل المعايير الدولية</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+/* VOICE: a calm, exact study handbook — reference first, no noise
+   IDEA: a tabbed standards binder; each standard is a coloured index tab with its code
+   PICTURE: the binder itself — large code tabs grid; inside, the standard reads like a ruled ledger page
+   COLOUR and TYPE: sky #4fb3e8 field, white, ink #10223a, orange #ff7a1a for what matters; night #0b1726. Outfit for codes, IBM Plex Sans Arabic for text
+   LAYOUT: sky band with title + search, tabs grid beneath; detail = code header band, section tabs, ruled body */
+:root{color-scheme:light dark;
+--bg:light-dark(#ffffff,#0b1726);--ink:light-dark(#10223a,#e8eef6);--mute:light-dark(#53647a,#9fb0c4);
+--sky:light-dark(#4fb3e8,#1d5f86);--skyd:light-dark(#2f8fc4,#4fb3e8);--soft:light-dark(#eef7fd,#12243a);
+--line:light-dark(#d9e6ef,#22374f);--or:#ff7a1a;--card:light-dark(#fff,#10203a)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16.5px/1.75 "IBM Plex Sans Arabic",system-ui,sans-serif;overflow-x:clip}
+a{color:inherit}
+.band{padding:clamp(22px,4vw,48px) max(5vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+.top{background:var(--sky);color:#fff}
+:root[data-theme=light] .top{color:#fff}
+.top h1{font-size:clamp(28px,4.4vw,46px);line-height:1.15;margin:0 0 6px;text-wrap:balance}
+.top p{margin:0 0 18px;opacity:.92;max-width:62ch}
+.lat{font-family:Outfit,sans-serif;direction:ltr;unicode-bidi:isolate}
+.search{display:flex;gap:8px;flex-wrap:wrap}
+.search input{flex:1 1 260px;font:inherit;font-size:16px;padding:12px 16px;border-radius:12px;border:0;background:#fff;color:#10223a;min-height:48px}
+.search input:focus{outline:3px solid var(--or);outline-offset:2px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.chip{font:inherit;font-size:14.5px;min-height:40px;padding:6px 14px;border-radius:999px;border:1.5px solid rgba(255,255,255,.7);background:transparent;color:#fff;cursor:pointer}
+.chip[aria-pressed=true]{background:#fff;color:#10223a;border-color:#fff}
+.chip:focus-visible,.tab:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,210px),1fr));gap:12px}
+.st{display:block;text-decoration:none;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:14px 16px 16px;position:relative;min-height:128px}
+.st .c{font-family:Outfit,sans-serif;font-weight:700;font-size:26px;line-height:1.1;direction:ltr;text-align:right}
+.st .n{font-weight:500;margin-top:6px;line-height:1.45}
+.st .e{font-size:13px;color:var(--mute);direction:ltr;text-align:right;margin-top:2px;line-height:1.4}
+.st.on{border-color:var(--skyd);background:var(--soft)}
+.st.on .c{color:var(--skyd)}
+.st.off{opacity:.62}
+.st .b{position:absolute;top:12px;left:12px;font-size:12.5px;padding:1px 9px;border-radius:999px;background:var(--or);color:#fff}
+.st.off .b{background:var(--line);color:var(--mute)}
+.st .fav{position:absolute;bottom:10px;left:12px;color:var(--or);font-size:18px}
+.st.on:hover{border-color:var(--or)}
+h2{font-size:22px;margin:28px 0 12px}
+.hint{color:var(--mute);font-size:14px;margin:0 0 12px}
+.hits{display:grid;gap:10px;margin-bottom:8px}
+.hit{display:block;text-decoration:none;border-inline-start:4px solid var(--or);background:var(--soft);padding:10px 14px;border-radius:8px}
+.hit b{display:block}.hit span{font-size:14.5px;color:var(--mute)}
+mark{background:color-mix(in srgb,var(--or) 30%,transparent);color:inherit;border-radius:3px}
+/* detail */
+.dh{background:var(--sky);color:#fff}
+.back{display:inline-flex;align-items:center;min-height:44px;color:#fff;text-decoration:none;font-weight:500}
+.dh .code{font-family:Outfit,sans-serif;font-weight:700;font-size:clamp(40px,7vw,64px);line-height:1;direction:ltr;text-align:right;margin:4px 0 8px}
+.dh h1{font-size:clamp(24px,3.4vw,34px);line-height:1.25;margin:0}
+.dh .en{direction:ltr;text-align:right;opacity:.9;margin:4px 0 0;font-family:Outfit,sans-serif;font-weight:500}
+.dh .row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.favb{font:inherit;min-height:44px;padding:8px 16px;border-radius:12px;border:1.5px solid #fff;background:transparent;color:#fff;cursor:pointer}
+.favb[aria-pressed=true]{background:var(--or);border-color:var(--or)}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:2px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:2;padding-top:8px}
+.tab{font:inherit;font-weight:500;min-height:46px;padding:8px 16px;border:0;background:none;color:var(--mute);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab[aria-selected=true]{color:var(--ink);border-color:var(--or)}
+.page{max-width:820px}
+.page h3{font-size:20px;margin:30px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.page h4{font-size:17px;margin:18px 0 4px;color:var(--skyd)}
+.page ul,.page ol{padding-inline-start:22px;margin:6px 0}
+.page li{margin:4px 0}
+.key{background:var(--soft);border-inline-start:4px solid var(--or);padding:12px 16px;border-radius:8px;margin:14px 0}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
+.toc a{font-size:14px;text-decoration:none;padding:6px 12px;border:1px solid var(--line);border-radius:999px;min-height:36px;display:inline-flex;align-items:center}
+table{border-collapse:collapse;width:100%;margin:10px 0 16px;font-size:15px}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top}
+th{background:var(--soft);font-weight:700}
+td.num,th.num{text-align:left;font-family:Outfit,sans-serif;white-space:nowrap;direction:ltr}
+.je td:first-child{white-space:nowrap;font-weight:700;width:56px}
+.je tr.cr td:nth-child(2){padding-inline-start:34px}
+.scroll{overflow-x:auto}
+.pit{display:grid;gap:10px;padding:0;list-style:none}
+.pit li{border:1.5px solid var(--line);border-radius:12px;padding:12px 14px}
+.pit b{color:var(--or)}
+.q{border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;margin:14px 0}
+.q p{margin:0 0 10px;font-weight:500}
+.opt{display:block;width:100%;text-align:right;font:inherit;min-height:46px;padding:10px 14px;margin:6px 0;border-radius:10px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.opt.ok{border-color:#2e9e5b;background:color-mix(in srgb,#2e9e5b 14%,var(--card))}
+.opt.no{border-color:#d1453b;background:color-mix(in srgb,#d1453b 12%,var(--card))}
+.why{font-size:15px;color:var(--mute);margin-top:6px}
+.score{font-weight:700;font-size:18px}
+.gl td:first-child{font-family:Outfit,sans-serif;direction:ltr;text-align:right;font-weight:600;white-space:nowrap}
+.note{font-size:13.5px;color:var(--mute)}
+footer{border-top:1px solid var(--line)}
+@media(max-width:600px){table{font-size:13.5px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flex;justify-content:space-between;gap:12px;border:0;padding:3px 0}.stack td::before{content:attr(data-l);color:var(--mute);font-weight:500}.tab{padding:8px 11px}}
+@media(prefers-reduced-motion:no-preference){.view{animation:in .25s ease-out}@keyframes in{from{opacity:0;transform:translateY(6px)}}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+var D={};
+var je=rows=>'<div class="scroll"><table class="je"><thead><tr><th></th><th>الحساب</th><th class="num">المبلغ</th></tr></thead><tbody>'+rows.map(r=>'<tr class="'+(r[0]==='د'?'dr':'cr')+'"><td>'+(r[0]==='د'?'من ح/':'إلى ح/')+'</td><td>'+r[1]+'</td><td class="num">'+r[2].toLocaleString('en-US')+'</td></tr>').join('')+'</tbody></table></div>';
+var tbl=(head,rows,num)=>'<div class="scroll"><table'+(head.length>2?' class="stack"':'')+'><thead><tr>'+head.map((h,i)=>'<th'+(num&&num.includes(i)?' class="num"':'')+'>'+h+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map((c,i)=>'<td data-l="'+head[i]+'"'+(num&&num.includes(i)?' class="num"':'')+'>'+(typeof c==='number'?c.toLocaleString('en-US'):c)+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>';
+</script>
+<!--DATA-->
+<script src="data/framework.js"></script>
+<script src="data/ias-1.js"></script>
+<script src="data/ias-10.js"></script>
+<script src="data/ias-12.js"></script>
+<script src="data/ias-16.js"></script>
+<script src="data/ias-19.js"></script>
+<script src="data/ias-2.js"></script>
+<script src="data/ias-20.js"></script>
+<script src="data/ias-21.js"></script>
+<script src="data/ias-23.js"></script>
+<script src="data/ias-24.js"></script>
+<script src="data/ias-26.js"></script>
+<script src="data/ias-27.js"></script>
+<script src="data/ias-28.js"></script>
+<script src="data/ias-29.js"></script>
+<script src="data/ias-32.js"></script>
+<script src="data/ias-33.js"></script>
+<script src="data/ias-34.js"></script>
+<script src="data/ias-36.js"></script>
+<script src="data/ias-37.js"></script>
+<script src="data/ias-38.js"></script>
+<script src="data/ias-40.js"></script>
+<script src="data/ias-41.js"></script>
+<script src="data/ias-7.js"></script>
+<script src="data/ias-8.js"></script>
+<script src="data/ifrs-1.js"></script>
+<script src="data/ifrs-10.js"></script>
+<script src="data/ifrs-11.js"></script>
+<script src="data/ifrs-12.js"></script>
+<script src="data/ifrs-13.js"></script>
+<script src="data/ifrs-14.js"></script>
+<script src="data/ifrs-15.js"></script>
+<script src="data/ifrs-16.js"></script>
+<script src="data/ifrs-17.js"></script>
+<script src="data/ifrs-18.js"></script>
+<script src="data/ifrs-19.js"></script>
+<script src="data/ifrs-2.js"></script>
+<script src="data/ifrs-3.js"></script>
+<script src="data/ifrs-5.js"></script>
+<script src="data/ifrs-6.js"></script>
+<script src="data/ifrs-7.js"></script>
+<script src="data/ifrs-8.js"></script>
+<script src="data/ifrs-9.js"></script>
+<script src="data/deep/framework.js"></script>
+<script src="data/deep/ias-1.js"></script>
+<script src="data/deep/ias-10.js"></script>
+<script src="data/deep/ias-12.js"></script>
+<script src="data/deep/ias-16.js"></script>
+<script src="data/deep/ias-19.js"></script>
+<script src="data/deep/ias-2.js"></script>
+<script src="data/deep/ias-20.js"></script>
+<script src="data/deep/ias-21.js"></script>
+<script src="data/deep/ias-23.js"></script>
+<script src="data/deep/ias-24.js"></script>
+<script src="data/deep/ias-26.js"></script>
+<script src="data/deep/ias-27.js"></script>
+<script src="data/deep/ias-28.js"></script>
+<script src="data/deep/ias-29.js"></script>
+<script src="data/deep/ias-32.js"></script>
+<script src="data/deep/ias-33.js"></script>
+<script src="data/deep/ias-34.js"></script>
+<script src="data/deep/ias-36.js"></script>
+<script src="data/deep/ias-37.js"></script>
+<script src="data/deep/ias-40.js"></script>
+<script src="data/deep/ias-41.js"></script>
+<script src="data/deep/ias-7.js"></script>
+<script src="data/deep/ias-8.js"></script>
+<script src="data/deep/ifrs-1.js"></script>
+<script src="data/deep/ifrs-10.js"></script>
+<script src="data/deep/ifrs-11.js"></script>
+<script src="data/deep/ifrs-12.js"></script>
+<script src="data/deep/ifrs-13.js"></script>
+<script src="data/deep/ifrs-14.js"></script>
+<script src="data/deep/ifrs-15.js"></script>
+<script src="data/deep/ifrs-16.js"></script>
+<script src="data/deep/ifrs-17.js"></script>
+<script src="data/deep/ifrs-18.js"></script>
+<script src="data/deep/ifrs-19.js"></script>
+<script src="data/deep/ifrs-2.js"></script>
+<script src="data/deep/ifrs-3.js"></script>
+<script src="data/deep/ifrs-5.js"></script>
+<script src="data/deep/ifrs-6.js"></script>
+<script src="data/deep/ifrs-7.js"></script>
+<script src="data/deep/ifrs-8.js"></script>
+<script src="data/deep/ifrs-9.js"></script>
+<!--/DATA-->
+<script>
+{
+
+const ALL=[
+['framework','CF','الإطار المفاهيمي للتقرير المالي','Conceptual Framework'],
+['ias-1','IAS 1','عرض القوائم المالية','Presentation of Financial Statements'],
+['ias-2','IAS 2','المخزون','Inventories'],
+['ias-7','IAS 7','قائمة التدفقات النقدية','Statement of Cash Flows'],
+['ias-8','IAS 8','السياسات المحاسبية والتغيرات في التقديرات والأخطاء','Accounting Policies, Changes in Estimates and Errors'],
+['ias-10','IAS 10','الأحداث بعد فترة التقرير','Events after the Reporting Period'],
+['ias-12','IAS 12','ضرائب الدخل','Income Taxes'],
+['ias-16','IAS 16','العقارات والآلات والمعدات','Property, Plant and Equipment'],
+['ias-19','IAS 19','منافع الموظفين','Employee Benefits'],
+['ias-20','IAS 20','المنح الحكومية','Government Grants'],
+['ias-21','IAS 21','آثار التغيرات في أسعار صرف العملات','Effects of Changes in Foreign Exchange Rates'],
+['ias-23','IAS 23','تكاليف الاقتراض','Borrowing Costs'],
+['ias-24','IAS 24','الإفصاح عن الأطراف ذات العلاقة','Related Party Disclosures'],
+['ias-26','IAS 26','خطط منافع التقاعد','Retirement Benefit Plans'],
+['ias-27','IAS 27','القوائم المالية المنفصلة','Separate Financial Statements'],
+['ias-28','IAS 28','الاستثمارات في الشركات الزميلة والمشروعات المشتركة','Investments in Associates and Joint Ventures'],
+['ias-29','IAS 29','التقرير المالي في الاقتصادات ذات التضخم المرتفع','Financial Reporting in Hyperinflationary Economies'],
+['ias-32','IAS 32','الأدوات المالية: العرض','Financial Instruments: Presentation'],
+['ias-33','IAS 33','ربحية السهم','Earnings per Share'],
+['ias-34','IAS 34','التقرير المالي الأولي','Interim Financial Reporting'],
+['ias-36','IAS 36','الهبوط في قيمة الأصول','Impairment of Assets'],
+['ias-37','IAS 37','المخصصات والالتزامات والأصول المحتملة','Provisions, Contingent Liabilities and Contingent Assets'],
+['ias-38','IAS 38','الأصول غير الملموسة','Intangible Assets'],
+['ias-40','IAS 40','العقارات الاستثمارية','Investment Property'],
+['ias-41','IAS 41','الزراعة','Agriculture'],
+['ifrs-1','IFRS 1','تطبيق المعايير الدولية لأول مرة','First-time Adoption of IFRS'],
+['ifrs-2','IFRS 2','الدفع على أساس الأسهم','Share-based Payment'],
+['ifrs-3','IFRS 3','تجميع الأعمال','Business Combinations'],
+['ifrs-5','IFRS 5','الأصول غير المتداولة المحتفظ بها للبيع والعمليات غير المستمرة','Non-current Assets Held for Sale and Discontinued Operations'],
+['ifrs-6','IFRS 6','استكشاف وتقييم الموارد المعدنية','Exploration for and Evaluation of Mineral Resources'],
+['ifrs-7','IFRS 7','الأدوات المالية: الإفصاحات','Financial Instruments: Disclosures'],
+['ifrs-8','IFRS 8','القطاعات التشغيلية','Operating Segments'],
+['ifrs-9','IFRS 9','الأدوات المالية','Financial Instruments'],
+['ifrs-10','IFRS 10','القوائم المالية الموحدة','Consolidated Financial Statements'],
+['ifrs-11','IFRS 11','الترتيبات المشتركة','Joint Arrangements'],
+['ifrs-12','IFRS 12','الإفصاح عن الحصص في المنشآت الأخرى','Disclosure of Interests in Other Entities'],
+['ifrs-13','IFRS 13','قياس القيمة العادلة','Fair Value Measurement'],
+['ifrs-14','IFRS 14','الحسابات التنظيمية المؤجلة','Regulatory Deferral Accounts'],
+['ifrs-15','IFRS 15','الإيراد من العقود مع العملاء','Revenue from Contracts with Customers'],
+['ifrs-16','IFRS 16','عقود الإيجار','Leases'],
+['ifrs-17','IFRS 17','عقود التأمين','Insurance Contracts'],
+['ifrs-18','IFRS 18','العرض والإفصاح في القوائم المالية','Presentation and Disclosure in Financial Statements'],
+['ifrs-19','IFRS 19','الشركات التابعة غير الخاضعة للمساءلة العامة: الإفصاحات','Subsidiaries without Public Accountability: Disclosures']
+];
+
+
+const $=s=>document.querySelector(s);
+const app=$('#app');
+let filter='all',q='',favs=[];
+try{favs=JSON.parse(localStorage.getItem('ifrs-favs')||'[]')}catch(e){favs=[]}
+const saveFav=()=>{try{localStorage.setItem('ifrs-favs',JSON.stringify(favs))}catch(e){}};
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const strip=h=>h.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ');
+const norm=s=>s.toLowerCase().replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي');
+
+function card(s){
+  const [id,code,ar,en]=s,on=!!D[id];
+  return (on?'<a class="st on" href="#'+id+'">':'<div class="st off">')+
+   '<span class="b">'+(on?'متاح':'قريباً')+'</span><div class="c">'+code+'</div><div class="n">'+ar+'</div><div class="e">'+en+'</div>'+
+   (favs.includes(id)?'<span class="fav" aria-label="مفضّل">★</span>':'')+(on?'</a>':'</div>');
+}
+function searchHits(){
+  if(q.trim().length<2)return '';
+  const nq=norm(q.trim()),out=[];
+  for(const id in D){
+    const s=ALL.find(a=>a[0]===id);
+    D[id].sec.forEach((x,i)=>{
+      const t=strip(x[1]),k=norm(t).indexOf(nq);
+      if(k>-1||norm(x[0]).includes(nq)){
+        const st=Math.max(0,k-50),snip=esc(t.slice(st,st+170));
+        out.push('<a class="hit" href="#'+id+'"  data-sec="'+i+'"><b>'+s[1]+': '+x[0]+'</b><span>…'+snip+'…</span></a>');
+      }
+    });
+  }
+  return '<h2>نتايج البحث في الشرح</h2>'+(out.length?'<div class="hits">'+out.slice(0,12).join('')+'</div>':'<p class="hint">ما فيش نتايج في المعايير المتاحة.</p>');
+}
+function home(){
+  const nq=norm(q.trim());
+  let list=ALL.filter(s=>filter==='all'||(filter==='ias'&&s[1].startsWith('IAS'))||(filter==='ifrs'&&s[1].startsWith('IFRS'))||(filter==='on'&&D[s[0]])||(filter==='fav'&&favs.includes(s[0])));
+  list=list.filter(s=>D[s[0]]).concat(list.filter(s=>!D[s[0]]));
+  if(nq)list=list.filter(s=>norm(s.join(' ')).includes(nq)||(D[s[0]]&&norm(strip(D[s[0]].sec.map(x=>x[1]).join(' '))).includes(nq)));
+  const chips=[['all','الكل'],['on','المتاح'],['ias','IAS'],['ifrs','IFRS'],['fav','المفضلة']];
+  app.innerHTML='<div class="view"><header class="band top"><div class="wrap"><h1>دليل المعايير الدولية للتقرير المالي</h1><p>شرح عربي مفصّل لكل معيار، مع أمثلة بالقيود اليومية وتطبيقات من شركات حقيقية وأسئلة اختبار. المتاح دلوقتي '+Object.keys(D).length+' من '+ALL.length+' معيار.</p>'+
+  '<div class="search"><input id="q" type="search" placeholder="دوّر على معيار أو مصطلح… مثلاً: إهلاك، lease، العوض المتغير" value="'+esc(q)+'" aria-label="بحث"></div>'+
+  '<div class="chips" role="group" aria-label="تصفية">'+chips.map(c=>'<button class="chip" data-f="'+c[0]+'" aria-pressed="'+(filter===c[0])+'">'+c[1]+'</button>').join('')+'</div></div></header>'+
+  '<main class="band"><div class="wrap">'+searchHits()+
+  '<h2>المعايير <span class="hint">('+list.length+')</span></h2>'+(list.length?'<div class="grid">'+list.map(card).join('')+'</div>':'<p class="hint">ما فيش معايير بالتصفية دي.</p>')+
+  '<h2><a href="#glossary">قاموس المصطلحات ←</a></h2></div></main>'+foot()+'</div>';
+  const inp=$('#q');
+  inp.addEventListener('input',e=>{q=e.target.value;const p=e.target.selectionStart;home();const n=$('#q');n.focus();n.setSelectionRange(p,p)});
+  app.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{filter=b.dataset.f;home()});
+}
+function foot(){return '<footer class="band"><div class="wrap note">الشرح ده ملخص تعليمي بأسلوب مبسط ومش بديل عن النص الرسمي للمعايير. النص الرسمي متاح مجاناً للمسجلين على موقع مؤسسة IFRS.</div></footer>'}
+
+function detail(id,tab){
+  const s=ALL.find(a=>a[0]===id),d=D[id];
+  const tabs=[['sec','الشرح'],['ex','أمثلة وقيود'],['real','من الواقع'],['pit','أخطاء شائعة'],['quiz','اختبار'],['terms','مصطلحات']].filter(t=>t[0]!=='real'||d.real);
+  tab=tab||'sec';
+  let body='';
+  if(tab==='sec')body='<p style="font-size:18px">'+d.sum+'</p><nav class="toc" aria-label="أقسام المعيار">'+d.sec.map((x,i)=>'<a href="#'+id+'" data-go="s'+i+'">'+x[0]+'</a>').join('')+'</nav>'+d.sec.map((x,i)=>'<section id="s'+i+'"><h3>'+x[0]+'</h3>'+x[1]+'</section>').join('');
+  if(tab==='ex')body=d.ex;
+  if(tab==='real')body='<p class="hint" style="margin-top:18px">أمثلة وصفية من التقارير المالية المنشورة لشركات حقيقية. للأرقام الدقيقة ارجع للتقرير السنوي للشركة نفسها.</p>'+d.real.map(x=>'<section class="rc"><h3>'+x[0]+'</h3>'+x[1]+'</section>').join('');
+  if(tab==='pit')body='<h3>أخطاء بتتكرر في الشغل والامتحانات</h3><ul class="pit">'+d.pit.map(p=>'<li><b>خطأ:</b> '+p[0]+'<br><b style="color:#2e9e5b">الصح:</b> '+p[1]+'</li>').join('')+'</ul>';
+  if(tab==='quiz')body='<h3>اختبر نفسك</h3><p class="score" id="sc">النتيجة: 0 من '+d.quiz.length+'</p>'+d.quiz.map((x,i)=>'<div class="q" data-i="'+i+'"><p>'+(i+1)+'. '+x[0]+'</p>'+x[1].map((o,j)=>'<button class="opt" data-j="'+j+'">'+o+'</button>').join('')+'<div class="why" hidden></div></div>').join('')+'<button class="favb" id="rq" style="color:var(--ink);border-color:var(--line)">ابدأ من الأول</button>';
+  if(tab==='terms')body='<h3>مصطلحات المعيار</h3>'+glTable(d.terms);
+  const isF=favs.includes(id);
+  app.innerHTML='<div class="view"><header class="band dh"><div class="wrap"><a class="back" href="#">→ كل المعايير</a><div class="row"><div><div class="code">'+s[1]+'</div><h1>'+s[2]+'</h1><p class="en">'+s[3]+'</p></div><button class="favb" id="fv" aria-pressed="'+isF+'">'+(isF?'★ في المفضلة':'☆ أضف للمفضلة')+'</button></div></div></header>'+
+  '<div class="band" style="padding-top:0"><div class="wrap"><div class="tabs" role="tablist">'+tabs.map(t=>'<button class="tab" role="tab" data-t="'+t[0]+'" aria-selected="'+(tab===t[0])+'">'+t[1]+'</button>').join('')+'</div><div class="page" role="tabpanel">'+body+'</div></div></div>'+foot()+'</div>';
+  $('#fv').onclick=()=>{favs=isF?favs.filter(x=>x!==id):favs.concat(id);saveFav();detail(id,tab)};
+  app.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{detail(id,b.dataset.t);window.scrollTo(0,0)});
+  app.querySelectorAll('[data-go]').forEach(a=>a.onclick=e=>{e.preventDefault();const t=document.getElementById(a.dataset.go);if(t)t.scrollIntoView({behavior:'smooth'})});
+  if(tab==='quiz'){
+    let sc=0,done=0;
+    app.querySelectorAll('.q').forEach(box=>{
+      const x=d.quiz[+box.dataset.i];
+      box.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+        if(box.dataset.done)return;box.dataset.done=1;done++;
+        const j=+b.dataset.j,ok=j===x[2];if(ok)sc++;
+        box.querySelectorAll('.opt').forEach((o,k)=>{if(k===x[2])o.classList.add('ok');else if(k===j)o.classList.add('no')});
+        const w=box.querySelector('.why');w.hidden=false;w.innerHTML=(ok?'<b style="color:#2e9e5b">صح.</b> ':'<b style="color:#d1453b">مش صح.</b> ')+x[3];
+        $('#sc').textContent='النتيجة: '+sc+' من '+d.quiz.length+(done===d.quiz.length?(sc===d.quiz.length?' — ممتاز!':' — راجع الشرح وجرب تاني'):'');
+      });
+    });
+    $('#rq').onclick=()=>detail(id,'quiz');
+  }
+}
+function glTable(rows){return '<div class="scroll"><table class="gl stack"><thead><tr><th>English</th><th>المصطلح</th><th>المعنى</th></tr></thead><tbody>'+rows.map(r=>'<tr><td data-l="English">'+r[0]+'</td><td data-l="المصطلح"><b>'+r[1]+'</b></td><td data-l="المعنى">'+r[2]+'</td></tr>').join('')+'</tbody></table></div>'}
+function glossary(){
+  const rows=[];for(const id in D)D[id].terms.forEach(t=>rows.push(t.concat(ALL.find(a=>a[0]===id)[1])));
+  rows.sort((a,b)=>a[0].localeCompare(b[0]));
+  app.innerHTML='<div class="view"><header class="band dh"><div class="wrap"><a class="back" href="#">→ كل المعايير</a><h1 style="margin-top:8px">قاموس المصطلحات</h1><p class="en" style="text-align:right">إنجليزي وعربي، من المعايير المتاحة</p></div></header><main class="band"><div class="wrap page">'+
+  '<div class="scroll"><table class="gl stack"><thead><tr><th>English</th><th>المصطلح</th><th>المعنى</th><th>المعيار</th></tr></thead><tbody>'+rows.map(r=>'<tr><td data-l="English">'+r[0]+'</td><td data-l="المصطلح"><b>'+r[1]+'</b></td><td data-l="المعنى">'+r[2]+'</td><td data-l="المعيار" class="num">'+r[3]+'</td></tr>').join('')+'</tbody></table></div></div></main>'+foot()+'</div>';
+}
+function route(){
+  const h=location.hash.slice(1);
+  if(h==='glossary')glossary();
+  else if(D[h])detail(h);
+  else home();
+  window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',route);
+route();
+}
+</script>
+</body>
+</html>
